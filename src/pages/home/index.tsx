@@ -13,6 +13,8 @@ interface CoinProps {
   symbol: string;
   volume_24h: string;
   market_cap: string;
+  formatedPrice: string;
+  formatedMarket: string;
 }
 
 interface DataProps {
@@ -44,7 +46,6 @@ export function Home(){
 
           return formated;
         })
-        console.log(formatResult)
         setCoins(formatResult);
 
       })
@@ -75,22 +76,24 @@ export function Home(){
             </tr>
           </thead>
           <tbody id='tbody'>
-            <tr className={styles.tr}>
-              <td className={styles.tdLabel} data-label='Moeda'>
-                <Link className={styles.link} to={'/detail/btc'}>
-                  <span>Bitcoin</span> | BTC
-                </Link>
-              </td>
-              <td className={styles.tdLabel} data-label='Mercado'>
-                R$ 193565
-              </td>
-              <td className={styles.tdLabel} data-label='Preço'>
-                R$ 40.956
-              </td>
-              <td className={styles.tdProfit} data-label='Volume'>
-                <span>-5.3</span>
-              </td>
+            {coins.map(coin => (
+              <tr key={coin.name} className={styles.tr}>
+                <td className={styles.tdLabel} data-label='Moeda'>
+                  <Link className={styles.link} to={`/detail/${coin.symbol}`}>
+                    <span>{coin.name}</span> | {coin.symbol}
+                  </Link>
+                </td>
+                <td className={styles.tdLabel} data-label='Mercado'>
+                  {coin.formatedMarket}
+                </td>
+                <td className={styles.tdLabel} data-label='Preço'>
+                  {coin.formatedPrice}
+                </td>
+                <td className={Number(coin?.delta_24h) >= 0 ? styles.tdProfit : styles.tdLoss} data-label='Volume'>
+                  <span>{coin.delta_24h}</span>
+                </td>
             </tr>
+            ))}
           </tbody>
         </table>
 
