@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import {FormEvent, useEffect, useState} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './home.module.css';
 
 import {BiSearch} from 'react-icons/bi';
@@ -23,10 +23,13 @@ interface DataProps {
 
 export function Home(){
   const [coins, setCoins] = useState<CoinProps[]>([]);
+  const [inputSearch, setInputSearch] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    function getData(){
-      fetch('https://sujeitoprogramador.com/api-cripto/?key=d7c378a3be95d4b5')
+    async function getData(){
+      await fetch('https://sujeitoprogramador.com/api-cripto/?key=d7c378a3be95d4b5')
       .then(response => response.json())
       .then((data: DataProps) => {
         // Aqui restringe a busca de apenas 15 itens.
@@ -54,14 +57,25 @@ export function Home(){
     getData();
   }, [])
 
+  function handleSearch(e: FormEvent){
+    e.preventDefault();
+    if(inputSearch === '') return;
+
+    navigate(`/detail/${inputSearch}`);
+
+  }
+
   return(
     <>
       <main className={styles.container}>
 
-        <form className={styles.form}>
-          <input placeholder='Digite o símbolo da moeda: BTC...' />
-
-          <button className={styles.button}>
+        <form className={styles.form} onSubmit={handleSearch}>
+          <input 
+            placeholder='Digite o símbolo da moeda: BTC...'
+            value={inputSearch}
+            onChange={(e) => setInputSearch(e.target.value)} 
+          />
+          <button type='submit'>
             <BiSearch size={30} color="#fff"/>
           </button>
         </form>
