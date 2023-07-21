@@ -5,9 +5,9 @@ export function NotFound(){
   return(
     <>
       <div className={styles.container}>
-        <h1>Página 404 não existe!</h1>
+        <h1>404 Not found page!</h1>
         <Link to={'/'}>
-          Acessar cripto moedas
+          Access cripto currency
         </Link>
       </div>
     </>

@@ -73,7 +73,7 @@ export function Home(){
 
         <form className={styles.form} onSubmit={handleSearch}>
           <input 
-            placeholder='Digite o símbolo da moeda: BTC...'
+            placeholder='Enter the currency symbol:: BTC...'
             value={inputSearch}
             onChange={(e) => setInputSearch(e.target.value)} 
           />
@@ -85,24 +85,24 @@ export function Home(){
         <table>
           <thead>
             <tr>
-              <th scope='col'>Moeda</th>
-              <th scope='col'>Valor mercado</th>
-              <th scope='col'>Preço</th>
+              <th scope='col'>Coin</th>
+              <th scope='col'>Market value</th>
+              <th scope='col'>Price</th>
               <th scope='col'>Volume</th>
             </tr>
           </thead>
           <tbody id='tbody'>
             {coins.map(coin => (
               <tr key={coin.name} className={styles.tr}>
-                <td className={styles.tdLabel} data-label='Moeda'>
+                <td className={styles.tdLabel} data-label='Coin'>
                   <Link className={styles.link} to={`/detail/${coin.symbol}`}>
                     <span>{coin.name}</span> | {coin.symbol}
                   </Link>
                 </td>
-                <td className={styles.tdLabel} data-label='Mercado'>
+                <td className={styles.tdLabel} data-label='Market value'>
                   {coin.formatedMarket}
                 </td>
-                <td className={styles.tdLabel} data-label='Preço'>
+                <td className={styles.tdLabel} data-label='Price'>
                   {coin.formatedPrice}
                 </td>
                 <td className={coin.numberDelta >= 0 ? styles.tdProfit : styles.tdLoss} data-label='Volume'>

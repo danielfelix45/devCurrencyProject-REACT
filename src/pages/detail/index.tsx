@@ -61,7 +61,7 @@ export function Detail(){
   if(loading){
     return(
       <div className={styles.container}>
-        <h4 className={styles.center}>Carregando...</h4>
+        <h4 className={styles.center}>Loading...</h4>
       </div>
     )
   }
@@ -74,13 +74,13 @@ export function Detail(){
 
         <section className={styles.content}>
           <p>
-            <strong>Preço:</strong> {detail?.formatedPrice}
+            <strong>Price:</strong> {detail?.formatedPrice}
           </p>
           <p>
-            <strong>Maior preço:</strong> {detail?.formatedHighPrice}
+            <strong>Biggest price:</strong> {detail?.formatedHighPrice}
           </p>
           <p>
-            <strong>Menor preço:</strong> {detail?.formatedLowPrice}
+            <strong>Lowest price:</strong> {detail?.formatedLowPrice}
           </p>
           <p>
             <strong>Delta 24h:</strong>
@@ -89,7 +89,7 @@ export function Detail(){
             </span> 
           </p>
           <p>
-            <strong>Valor mercado:</strong> {detail?.formatedMarket}
+            <strong>Market value:</strong> {detail?.formatedMarket}
           </p>
         </section>
       </div>
