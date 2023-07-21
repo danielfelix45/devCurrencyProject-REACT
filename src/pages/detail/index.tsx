@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import styles from './detail.module.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface CoinProps{
   symbol: string;
@@ -20,6 +20,7 @@ interface CoinProps{
 
 export function Detail(){
   const {cripto} = useParams();
+  const navigate = useNavigate();
 
   const [detail, setDetail] = useState<CoinProps>();
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,10 @@ export function Detail(){
       await fetch(`https://sujeitoprogramador.com/api-cripto/coin/?key=d7c378a3be95d4b5&pref=BRL&symbol=${cripto}`)
       .then(res => res.json())
       .then((data: CoinProps) => {
+
+        if(data.error){
+          navigate("/")
+        }
         
         let price = Intl.NumberFormat('pt-BR', {
           style: 'currency',
