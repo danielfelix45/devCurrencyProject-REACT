@@ -16,4 +16,4 @@
 
 # 🤔 What is the purpose of this project?
 
-The focus of this activity is to practice JavaScript programming for the Web, using React( css-module and route configuration).
+The focus of this activity is to practice JavaScript programming for the Web, using React( css-module, route configuration and Consume an external cryptocurrency API).
